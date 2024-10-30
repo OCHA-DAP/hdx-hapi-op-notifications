@@ -51,9 +51,7 @@ def main(
 
                 if len(errors_on_exit.errors) > 0:
                     errors = errors_on_exit.errors
-                    errors = [
-                        "The following datasets mey need updating"
-                    ] + sorted(errors)
+                    errors = ["The following datasets mey need updating"] + sorted(errors)
                     with open("errors.txt", "w") as fp:
                         fp.writelines(_ + " | " for _ in errors)
                 logger.info("Finished processing")
@@ -65,7 +63,5 @@ if __name__ == "__main__":
         hdx_site="dev",
         user_agent_config_yaml=join(expanduser("~"), ".useragents.yaml"),
         user_agent_lookup=_USER_AGENT_LOOKUP,
-        project_config_yaml=join(
-            dirname(__file__), "config", "project_configuration.yaml"
-        ),
+        project_config_yaml=join(dirname(__file__), "config", "project_configuration.yaml"),
     )
