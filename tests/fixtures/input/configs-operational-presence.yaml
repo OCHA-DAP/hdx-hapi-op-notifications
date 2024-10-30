@@ -95,7 +95,7 @@ operational_presence_admintwo:
 operational_presence_adminone:
   operational_presence_tcd:
     dataset: chad-operational-presence
-    resource: 3W_TCD_June2024
+    resource: 3W_TCD_May2024
     format: xlsx
     xlsx2csv: true
     sheet: 3w opérationnelle

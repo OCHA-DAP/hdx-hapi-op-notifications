@@ -3,6 +3,7 @@ from os.path import join
 import pytest
 
 from hdx.api.configuration import Configuration
+from hdx.data.dataset import Dataset
 from hdx.scraper.op_notifications.op_notifications import OPNotifications
 from hdx.utilities.downloader import Download
 from hdx.utilities.errors_onexit import ErrorsOnExit
@@ -21,6 +22,20 @@ class TestOPNotifications:
             project_config_yaml=join(config_dir, "project_configuration.yaml"),
         )
         return Configuration.read()
+
+    @pytest.fixture(scope="function")
+    def read_dataset(self, monkeypatch):
+        def read_from_hdx(dataset_name):
+            return Dataset.load_from_json(
+                join(
+                    "tests",
+                    "fixtures",
+                    "input",
+                    f"dataset-{dataset_name}.json",
+                )
+            )
+
+        monkeypatch.setattr(Dataset, "read_from_hdx", staticmethod(read_from_hdx))
 
     @pytest.fixture(scope="class")
     def fixtures_dir(self):
@@ -73,7 +88,7 @@ class TestOPNotifications:
                         },
                         "operational_presence_tcd": {
                             "dataset": "chad-operational-presence",
-                            "resource": "3W_TCD_June2024",
+                            "resource": "3W_TCD_May2024",
                         },
                         "operational_presence_bfa": {
                             "dataset": "burkina-faso-presence-operationnelle",
@@ -82,4 +97,4 @@ class TestOPNotifications:
                     }
 
                     op_notifications.check_hdx()
-                    assert errors_on_exit.errors == []
+                    assert errors_on_exit.errors == ["tcd: chad-operational-presence"]
