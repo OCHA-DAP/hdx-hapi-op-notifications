@@ -1,14 +1,17 @@
 from os.path import join
 
 import pytest
+
 from hdx.api.configuration import Configuration
+from hdx.scraper.op_notifications.op_notifications import OPNotifications
 from hdx.utilities.downloader import Download
+from hdx.utilities.errors_onexit import ErrorsOnExit
 from hdx.utilities.path import temp_dir
 from hdx.utilities.retriever import Retrieve
 from hdx.utilities.useragent import UserAgent
 
 
-class Test_OPNotifications:
+class TestOPNotifications:
     @pytest.fixture(scope="function")
     def configuration(self, config_dir):
         UserAgent.set_global("test")
@@ -36,5 +39,30 @@ class Test_OPNotifications:
         configuration,
         fixtures_dir,
         input_dir,
-        config_dir
+        config_dir,
     ):
+        with ErrorsOnExit() as errors_on_exit:
+            with temp_dir(
+                "Test_OPNotifications",
+                delete_on_success=True,
+                delete_on_failure=False,
+            ) as tempdir:
+                with Download(user_agent="test") as downloader:
+                    retriever = Retrieve(
+                        downloader=downloader,
+                        fallback_dir=tempdir,
+                        saved_dir=input_dir,
+                        temp_dir=tempdir,
+                        save=False,
+                        use_saved=True,
+                    )
+                    op_notifications = OPNotifications(
+                        configuration,
+                        retriever,
+                        errors_on_exit,
+                    )
+                    op_notifications.read_yaml()
+                    assert op_notifications.data == {}
+
+                    op_notifications.check_hdx()
+                    assert errors_on_exit.errors == []

@@ -13,7 +13,10 @@ logger = logging.getLogger(__name__)
 
 class OPNotifications:
     def __init__(
-        self, configuration: Configuration, retriever: Retrieve, errors: ErrorsOnExit
+        self,
+        configuration: Configuration,
+        retriever: Retrieve,
+        errors: ErrorsOnExit,
     ):
         self._configuration = configuration
         self._retriever = retriever
@@ -24,7 +27,9 @@ class OPNotifications:
         base_url = self._configuration["config_url"]
         op_yaml = self._retriever.download_yaml(base_url)
         for admin_level in ["admintwo", "adminone", "national"]:
-            for pipeline_name, config in op_yaml[f"operational_presence_{admin_level}"].items():
+            for pipeline_name, config in op_yaml[
+                f"operational_presence_{admin_level}"
+            ].items():
                 self.data[pipeline_name] = {
                     "dataset": config["dataset"],
                     "resource": config["resource"],
@@ -36,7 +41,9 @@ class OPNotifications:
             dataset_name = dataset_info["dataset"]
             dataset = Dataset.read_from_hdx(dataset_name)
             resource_names = [r["name"] for r in dataset.get_resources()]
-            expected_index = self._configuration["resource_index_exceptions"].get(countryiso3, 0)
+            expected_index = self._configuration[
+                "resource_index_exceptions"
+            ].get(countryiso3, 0)
             resource_index = resource_names.index(dataset_info["resource"])
             if resource_index != expected_index:
                 self.errors.add(f"{countryiso3}: {dataset_name}")
