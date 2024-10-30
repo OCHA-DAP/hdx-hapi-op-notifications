@@ -15,7 +15,7 @@ from hdx.utilities.errors_onexit import ErrorsOnExit
 from hdx.utilities.path import temp_dir
 from hdx.utilities.retriever import Retrieve
 
-from .op_notifications import OPNotifications
+from op_notifications import OPNotifications
 
 logger = logging.getLogger(__name__)
 
@@ -61,7 +61,6 @@ def main(
 if __name__ == "__main__":
     facade(
         main,
-        hdx_site="dev",
         user_agent_config_yaml=join(expanduser("~"), ".useragents.yaml"),
         user_agent_lookup=_USER_AGENT_LOOKUP,
         project_config_yaml=join(dirname(__file__), "config", "project_configuration.yaml"),
