@@ -62,7 +62,24 @@ class TestOPNotifications:
                         errors_on_exit,
                     )
                     op_notifications.read_yaml()
-                    assert op_notifications.data == {}
+                    assert op_notifications.data == {
+                        "operational_presence_afg": {
+                            "dataset": "afghanistan-who-does-what-where-april-to-june-2024",
+                            "resource": "afghanistan-3w-operational-presence-april-june-2024.csv",
+                        },
+                        "operational_presence_caf": {
+                            "dataset": "republique-centrafricaine-presence-operationnelle",
+                            "resource": "3W_CAR_Mar2024",
+                        },
+                        "operational_presence_tcd": {
+                            "dataset": "chad-operational-presence",
+                            "resource": "3W_TCD_June2024",
+                        },
+                        "operational_presence_bfa": {
+                            "dataset": "burkina-faso-presence-operationnelle",
+                            "resource": "3W Burkina Faso March-April 2024",
+                        },
+                    }
 
                     op_notifications.check_hdx()
                     assert errors_on_exit.errors == []
