@@ -1,8 +1,11 @@
-# Collector for op_notifications Datasets
+# Notifications for Operational Presence datasets in HAPI
 [![Build Status](https://github.com/OCHA-DAP/hdx-hapi-op-notifications/actions/workflows/run-python-tests.yaml/badge.svg)](https://github.com/OCHA-DAP/hdx-hapi-op-notifications/actions/workflows/run-python-tests.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/OCHA-DAP/hdx-hapi-op-notifications/badge.svg?branch=main&ts=1)](https://coveralls.io/github/OCHA-DAP/hdx-hapi-op-notifications?branch=main)
 
-This script ...
+This script checks the operational presence resources in the HAPI configuration against the
+files on HDX to see if they are the latest available data, as determined by the order of
+the resources in each dataset. If it's determined that they are not, an email is sent to
+notify the data engineers that an update might be needed.
 
 ## Development
 
