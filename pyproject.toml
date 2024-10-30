@@ -65,6 +65,7 @@ run = """
        """
 
 [tool.hatch.envs.hatch-static-analysis.scripts]
+dependencies = ["ruff==0.7.1"]
 format-check = ["ruff format --config .config/ruff.toml --check --diff {args:.}",]
 format-fix = ["ruff format --config .config/ruff.toml {args:.}",]
 lint-check = ["ruff check --config .config/ruff.toml {args:.}",]
