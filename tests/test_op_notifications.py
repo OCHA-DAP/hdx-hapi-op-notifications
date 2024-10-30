@@ -55,6 +55,7 @@ class TestOPNotifications:
         fixtures_dir,
         input_dir,
         config_dir,
+        read_dataset,
     ):
         with ErrorsOnExit() as errors_on_exit:
             with temp_dir(
