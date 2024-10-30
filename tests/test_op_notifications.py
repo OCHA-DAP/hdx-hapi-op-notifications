@@ -4,12 +4,13 @@ import pytest
 
 from hdx.api.configuration import Configuration
 from hdx.data.dataset import Dataset
-from hdx.scraper.op_notifications.op_notifications import OPNotifications
 from hdx.utilities.downloader import Download
 from hdx.utilities.errors_onexit import ErrorsOnExit
 from hdx.utilities.path import temp_dir
 from hdx.utilities.retriever import Retrieve
 from hdx.utilities.useragent import UserAgent
+
+from hdx.scraper.op_notifications.op_notifications import OPNotifications
 
 
 class TestOPNotifications:
