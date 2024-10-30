@@ -28,15 +28,15 @@ def main(
 ) -> None:
 
     with ErrorsOnExit() as errors_on_exit:
-        with temp_dir() as temp_folder:
+        with temp_dir() as tempdir:
             with Download() as downloader:
                 with open("errors.txt", "w") as fp:
                     pass
                 retriever = Retrieve(
                     downloader=downloader,
-                    fallback_dir=temp_folder,
+                    fallback_dir=tempdir,
                     saved_dir=_SAVED_DATA_DIR,
-                    temp_dir=temp_folder,
+                    temp_dir=tempdir,
                     save=save,
                     use_saved=use_saved,
                 )
@@ -45,7 +45,6 @@ def main(
                 op_notifications = OPNotifications(
                     configuration,
                     retriever,
-                    temp_folder,
                     errors_on_exit,
                 )
                 op_notifications.read_yaml()

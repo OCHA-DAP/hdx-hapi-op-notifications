@@ -13,11 +13,10 @@ logger = logging.getLogger(__name__)
 
 class OPNotifications:
     def __init__(
-        self, configuration: Configuration, retriever: Retrieve, temp_dir: str, errors: ErrorsOnExit
+        self, configuration: Configuration, retriever: Retrieve, errors: ErrorsOnExit
     ):
         self._configuration = configuration
         self._retriever = retriever
-        self._temp_dir = temp_dir
         self.data = {}
         self.errors = errors
 
