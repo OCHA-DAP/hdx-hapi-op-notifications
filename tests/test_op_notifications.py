@@ -99,3 +99,6 @@ class TestOPNotifications:
 
                     op_notifications.check_hdx()
                     assert errors_on_exit.errors == ["tcd: chad-operational-presence"]
+
+                    # Reset errors so it can succeed
+                    errors_on_exit.errors = []
