@@ -1,7 +1,6 @@
 from os.path import join
 
 import pytest
-
 from hdx.api.configuration import Configuration
 from hdx.data.dataset import Dataset
 from hdx.utilities.downloader import Download
