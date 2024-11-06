@@ -52,7 +52,7 @@ def main(
 
                 if len(errors_on_exit.errors) > 0:
                     errors = errors_on_exit.errors
-                    errors = ["The following datasets mey need updating"] + sorted(errors)
+                    errors = ["The following datasets may need updating"] + sorted(errors)
                     with open("errors.txt", "w") as fp:
                         fp.writelines(_ + " | " for _ in errors)
                 logger.info("Finished processing")
