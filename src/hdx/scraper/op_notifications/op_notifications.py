@@ -40,6 +40,10 @@ class OPNotifications:
             dataset = Dataset.read_from_hdx(dataset_name)
             resource_names = [r["name"] for r in dataset.get_resources()]
             expected_index = self._configuration["resource_index_exceptions"].get(countryiso3, 0)
-            resource_index = resource_names.index(dataset_info["resource"])
+            try:
+                resource_index = resource_names.index(dataset_info["resource"])
+            except ValueError:
+                self.errors.add(f"{countryiso3}: {dataset_name}")
+                continue
             if resource_index != expected_index:
                 self.errors.add(f"{countryiso3}: {dataset_name}")
