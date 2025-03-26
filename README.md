@@ -1,10 +1,8 @@
-# Notifications for Operational Presence datasets in HAPI
+## DEPRECATED - script no longer needed
+
+## Notifications for Operational Presence datasets in HAPI
 [![Build Status](https://github.com/OCHA-DAP/hdx-hapi-op-notifications/actions/workflows/run-python-tests.yaml/badge.svg)](https://github.com/OCHA-DAP/hdx-hapi-op-notifications/actions/workflows/run-python-tests.yaml)
 [![Coverage Status](https://coveralls.io/repos/github/OCHA-DAP/hdx-hapi-op-notifications/badge.svg?branch=main&ts=1)](https://coveralls.io/github/OCHA-DAP/hdx-hapi-op-notifications?branch=main)
-
-Please note:
-
-Script no longer runs. It was last run in January 2025.
 
 This script checks the operational presence resources in the HAPI configuration against the
 files on HDX to see if they are the latest available data, as determined by the order of
